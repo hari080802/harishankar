@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="taskManagerApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form input[type="text"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        form button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        li span {
+            margin-right: 10px;
+        }
+
+        li button {
+            padding: 3px 6px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="TaskController as taskCtrl">
+        <h1>Task Manager</h1>
+        <form ng-submit="taskCtrl.addTask()">
+            <input type="text" ng-model="taskCtrl.newTask" placeholder="Add a new task" required>
+            <button type="submit">Add Task</button>
+        </form>
+        <ul>
+            <li ng-repeat="task in taskCtrl.tasks">
+                <span>{{task.name}}</span>
+                <button ng-click="taskCtrl.editTask(task)">Edit</button>
+                <button ng-click="taskCtrl.deleteTask(task)">Delete</button>
+            </li>
+        </ul>
+    </div>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        angular.module('taskManagerApp', [])
+        .controller('TaskController', function() {
+            var vm = this;
+           
+            vm.tasks = [];
+            vm.newTask = '';
+           
+            vm.addTask = function() {
+                if (vm.newTask !== '') {
+                    vm.tasks.push({ name: vm.newTask });
+                    vm.newTask = '';
+                }
+            };
+           
+            vm.editTask = function(task) {
+                var newName = prompt('Edit task:', task.name);
+                if (newName && newName !== '') {
+                    task.name = newName;
+                }
+            };
+           
+            vm.deleteTask = function(task) {
+                var index = vm.tasks.indexOf(task);
+                if (index !== -1) {
+                    vm.tasks.splice(index, 1);
+                }
+            };
+        });
+    </script>
+</body>
+</html>
