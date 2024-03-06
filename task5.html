@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="authApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authentication</title>
+    <link rel="stylesheet" href="task52.css">
+</head>
+<body>
+    <div ng-controller="AuthController as authCtrl">
+        <h1>User Authentication</h1>
+        <div ng-if="!authCtrl.isAuthenticated">
+            <form ng-submit="authCtrl.login()">
+                <h2>Login</h2>
+                <div>
+                    <label>Email:</label>
+                    <input type="email" ng-model="authCtrl.loginData.email" required>
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" ng-model="authCtrl.loginData.password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" ng-click="authCtrl.showSignup()">Sign Up</a></p>
+        </div>
+        <div ng-if="authCtrl.showSignupForm">
+            <form ng-submit="authCtrl.signup()">
+                <h2>Sign Up</h2>
+                <div>
+                    <label>Email:</label>
+                    <input type="email" ng-model="authCtrl.signupData.email" required>
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" ng-model="authCtrl.signupData.password" required>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" ng-click="authCtrl.showLogin()">Login</a></p>
+        </div>
+        <div ng-if="authCtrl.isAuthenticated">
+            <h2>WELCOME harisakthivel0808@gmail.com</h2>
+            <button ng-click="authCtrl.logout()">Logout</button>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="task53.js"></script>
+</body>
+</html>
