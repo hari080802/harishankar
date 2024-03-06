@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quizApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="task62.css">
+</head>
+<body>
+    <div ng-controller="QuizController as quizCtrl">
+        <h1>Interactive Quiz</h1>
+        <div class="quiz-container">
+            <div class="question">
+                <div class="question-text">{{ quizCtrl.currentQuestion.question }}</div>
+                <div class="options">
+                    <div ng-repeat="option in quizCtrl.currentQuestion.options" class="option">
+                        <input type="radio" ng-model="quizCtrl.selectedOption" ng-value="option">{{ option }}
+                    </div>
+                </div>
+                <button ng-click="quizCtrl.checkAnswer()">Submit</button>
+            </div>
+            <div class="result" ng-if="quizCtrl.showResult">
+                <h2 ng-if="quizCtrl.isCorrect">Correct!</h2>
+                <h2 ng-if="!quizCtrl.isCorrect">Incorrect!</h2>
+                <p>Your score: {{ quizCtrl.score }}</p>
+                <button ng-click="quizCtrl.nextQuestion()">Next Question</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="task63.js"></script>
+</body>
+</html>
