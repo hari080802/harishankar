@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dashboardApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Analytics</title>
+    <link rel="stylesheet" href="task102.css">
+</head>
+<body>
+    <div ng-controller="DashboardController as dashboardCtrl">
+        <h1>Dashboard Analytics</h1>
+        <div class="analytics">
+            <div class="metric" ng-repeat="metric in dashboardCtrl.metrics">
+                <div class="value">999</div>
+                <div class="label">10000</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="task103.js"></script>
+</body>
+</html>
