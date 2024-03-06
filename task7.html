@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="productCatalogApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog</title>
+    <link rel="stylesheet" href="task72.css">
+</head>
+<body>
+    <div ng-controller="ProductCatalogController as productCatalogCtrl">
+        <h1>Product Catalog</h1>
+        <div class="filters">
+            <h2>Filters</h2>
+            <div>
+                <label>Category:</label>
+                <select ng-model="productCatalogCtrl.selectedCategory" ng-change="productCatalogCtrl.filterProducts()">
+                    <option value="">All</option>
+                    <option ng-repeat="category in productCatalogCtrl.categories" value="{{ category }}">{{ category }}</option>
+                </select>
+            </div>
+            <div>
+                <label>Feature:</label>
+                <select ng-model="productCatalogCtrl.selectedFeature" ng-change="productCatalogCtrl.filterProducts()">
+                    <option value="">All</option>
+                    <option ng-repeat="feature in productCatalogCtrl.features" value="{{ feature }}">{{ feature }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="product-list">
+            <div ng-repeat="product in productCatalogCtrl.filteredProducts" class="product">
+                <h3>{{ product.name }}</h3>
+                <p>iphone: </p>
+                <p>Features: </p>
+            </div>
+            <div class="no-products" ng-if="productCatalogCtrl.filteredProducts.length === 0">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="task73.js"></script>
+</body>
+</html>
